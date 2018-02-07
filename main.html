@@ -1,0 +1,288 @@
+          <body>
+            <div id="main" ng-app="myApp">
+                <div ng-controller="myCtrl" id="angularAppCtrl">
+                    <div id="clinicalTrialsAngularApp" class="container">
+                        <h2>Find a Recruiting Trial</h2>
+                        <div id="clinicalTrialsFilterBar">
+                            <p id="filterBarPatientInfo">PATIENT INFO</p>
+                            <ul id="diagnosisFilter"><span class="filterBarText">Diagnosis</span>
+                                <li id="diagnosisDropdown">Select Diagnosis</li>
+                                <li id="dropdownItem2">Pleural</li>
+                                <li id="dropdownItem3">Peritoneal</li>
+                                <li id="dropdownItem4">Pericardial</li>
+                                <li id="dropdownItem5">Testicular</li>
+                                <ul id="hiddenDropdownList">
+                                    <li id="hiddenDropdownItem1"><a ng-click="modalUpdate(); filters.category = ''; activeMenu = 'first';" ng-class="{active : activeMenu === 'first'}">Clear Filter</a></li>
+                                    <li id="hiddenDropdownItem2"><a ng-click="modalUpdate(); filters.category = 'pleural'; activeMenu = 'second';" ng-class="{active : activeMenu === 'second'}" class="manualDropdown">Pleural</a></li>
+                                    <li id="hiddenDropdownItem3"><a ng-click="modalUpdate(); filters.category = 'peritoneal'; activeMenu = 'third';" ng-class="{active : activeMenu === 'third'}" class="manualDropdown">Peritoneal</a></li>
+                                    <li id="hiddenDropdownItem4"><a ng-click="modalUpdate(); filters.category = 'pericardial'; activeMenu = 'fourth';" ng-class="{active : activeMenu === 'fourth'}" class="manualDropdown">Pericardial</a></li>
+                                    <li id="hiddenDropdownItem5"><a ng-click="modalUpdate(); filters.category = 'testicular'; activeMenu = 'fifth';" ng-class="{active : activeMenu === 'fifth'}" class="manualDropdown">Testicular</a></li>
+                                </ul>
+                            </ul>
+                            <div id="newlyDiagnosedContainer">
+                                <span class="filterBarText">Newly Diagnosed?</span>
+                                <div id="newlyDiagnosedFilter">
+                                    <div id="newlyDiagnosedItem1"><a ng-click="modalUpdate(); filters3.category3 = ''; activeMenu3 = 'first';" ng-class="{active : activeMenu3 === 'first'}">Clear Filter</a></div>
+                                    <div id="newlyDiagnosedItem2"><a ng-click="turnOffActiveMenu3Second(); modalUpdate(); filters3.category3 = 'yes'; activeMenu3 = 'second'; " ng-class="{active : activeMenu3 === 'second'}" class="manualDropdown">Yes</a></div>
+                                    <div id="newlyDiagnosedItem3"><a ng-click="turnOffActiveMenu3Third(); modalUpdate(); filters3.category3 = 'no'; activeMenu3 = 'third';" ng-class="{active : activeMenu3 === 'third'}" class="manualDropdown">No</a></div>
+                                </div>
+                            </div>
+                            <div id="surgicalCandidateContainer">
+                                <span class="filterBarText">Surgical Candidate?</span>
+                                <div id="surgicalCandidateFilter">
+                                    <div id="surgicalCandidateItem1"><a ng-click="modalUpdate(); filters2.category2 = ''; activeMenu2 = 'first'; " ng-class="{active : activeMenu2 === 'first'}">Clear Filter</a></div>
+                                    <div id="surgicalCandidateItem2"><a ng-click="turnOffActiveMenu2Second(); modalUpdate(); filters2.category2 = 'yes'; activeMenu2 = 'second';" ng-class="{active : activeMenu2 === 'second'}" class="manualDropdown">Yes</a></div>
+                                    <div id="surgicalCandidateItem3"><a ng-click="turnOffActiveMenu2Third(); modalUpdate(); filters2.category2 = 'no'; activeMenu2 = 'third';" ng-class="{active : activeMenu2 === 'third'}" class="manualDropdown">No</a></div>
+                                </div>
+                            </div>
+                            <div id="chemoPatientContainer">
+                                <span class="filterBarText">Had Standard Chemotherapy?</span>
+                                <div id="chemoPatientFilter">
+                                    <div id="chemoPatientItem1"><a ng-click="modalUpdate(); filters4.category4 = ''; activeMenu4 = 'first';" ng-class="{active : activeMenu4 === 'first'}">Clear Filter</a></div>
+                                    <div id="chemoPatientItem2"><a ng-click="turnOffActiveMenu4Second(); modalUpdate(); filters4.category4 = 'yes'; activeMenu4 = 'second';" ng-class="{active : activeMenu4 === 'second'}" class="manualDropdown">Yes</a></div>
+                                    <div id="chemoPatientItem3"><a ng-click="turnOffActiveMenu4Third(); modalUpdate(); filters4.category4 = 'no'; activeMenu4 = 'third';" ng-class="{active : activeMenu4 === 'third'}" class="manualDropdown">No</a></div>
+                                </div>
+                            </div>
+                            <div id="topSearchDropdownContainer">
+                                <div id="topSearchDropdownBtn">
+                                    <a href="#" id="searchBarDropdownButton">Narrow Search by Keyword</a>
+                                </div>
+                            </div>
+                            <div id="topSearchBarContainer" class="hideMeAtFirst">
+                                <div id="topSearchBar" style="margin-bottom: 20px;">
+                                    <p></p>
+                                    <input id="tags" type="text" ng-model="search" ng-change="myFunc(); modalUpdate();" placeholder="Search Trial Keywords">
+                                </div>
+                            </div>
+                        </div>
+                            <div id="clinicalTrialsList" ng-cloak>
+                                <div id="clinicalTrialsSidebar">
+
+                                </div>
+                                <p id="replacedTitle">Top Mesothelioma Trials</p>
+                                <span ng-repeat="trial in clinicalTrials | filter:search | filter:filters | filter: filters2 | filter: filters3 | filter: filters4 | filter:query as filtered" ><!--{{filtered.length}}--></span>
+                                <div class="clinicalTrialsItem" ng-repeat="trial in clinicalTrials | filter:search | filter:filters | filter: filters2 | filter: filters3 | filter: filters4 | limitTo: limit">
+                                    <a href="/treatment/clinical-trials/join?tID={{trial.trialId}}"><h2>{{trial.name}}</h2></a>
+                                    <div class="trialIdNum"><p>ID: {{trial.trialId}}</p><p class="recruitingText">{{trial.recruiting}}</p></div>
+                                    <p class="trialSponsor"><span>Sponsor</span> <span class="sponsorPipe">|</span> {{trial.sponsor}}</p>
+                                    <p class="trialDescription">{{trial.desc}}</p>
+                                    <ul class="specializedForList"><strong>Specialized for Patients Who Are:</strong>
+                                        <li>{{ trial.specialized1 }}</li>
+                                        <li>{{ trial.specialized2 }}</li>
+                                        <li>{{ trial.specialized3 }}</li>
+<!--                                        <li>{{ trial.specialized4 }}</li>-->
+                                    </ul>
+                                    <div class="trialButtonRow" style="position: relative;">
+                                        <a href="/treatment/clinical-trials/join?tID={{trial.trialId}}" ng-click="__gaTracker('send', 'event', 'Clinical Trials', 'User Click', '{{trial.trialId}}', 1);" class="getConnectedButton">{{trial.trialBtnText}}</a>
+                                        <div class="trialReadMoreButton {{trial.hidden}}"><a href="{{trial.readMoreBtn}}" class="tab openModal{{trial.modalId}}">{{trial.readMoreText}}</a></div>
+                                    </div>
+                                    <span style="position: absolute; bottom: 57px;" ng-show="$last" ng-if="filtered.length > limit"><a  class="button secondary" id="loadMoreButtonSize" href ng-click="modalUpdate(); incrementLimit(); showme=true" ng-hide="showme">Load More</a></span>
+                                </div>
+                            </div>
+
+                        <div id="noResultsTab" ng-show="(clinicalTrials | filter:search | filter:filters | filter: filters2 | filter: filters3 | filter: filters4).length == 0" ng-cloak>
+                            <p id="noResultsParagraph">Sorry, no results were found for "{{search}}".</p>
+                            <ul class="noResultsList">Search Suggestions
+                                <li>Check your spelling.</li>
+                                <li>Try a more general search.</li>
+                                <li><a href="/treatment/clinical-trials/join/">Send us a message</a>, we can help you find a trial.</li>
+                            </ul>
+                            <ol class="noResultsList">Popular Trials
+                                <li><a ng-click="modalUpdate(); search = 'Tremelimumab'; filters.category = ''; activeMenu = 'first'; filters2.category2 = ''; activeMenu2 = 'first'; filters3.category3 = ''; activeMenu3 = 'first';">MEDI4736 or MEDI4736 + Tremelimumab in Surgically Resectable Mesothelioma</a></li>
+                                <li><a ng-click="modalUpdate(); search = 'Antibody Pembrolizumab in Patients'; filters.category = ''; activeMenu = 'first'; filters2.category2 = ''; activeMenu2 = 'first'; filters3.category3 = ''; activeMenu3 = 'first'; filters4.category4 = ''; activeMenu4 = 'first';">Anti-PD-1 Antibody Pembrolizumab in Patients With Resectable Pleural Mesothelioma</a></li>
+                                <li><a ng-click="modalUpdate(); search = 'Intensity Modulated Radiation Therapy'; filters.category = ''; activeMenu = 'first'; filters2.category2 = ''; activeMenu2 = 'first'; filters3.category3 = ''; activeMenu3 = 'first'; filters4.category4 = ''; activeMenu4 = 'first';">Pleurectomy/Decortication with Intensity Modulated Radiation Therapy and Chemotherapy</a></li>
+                                <li><a ng-click="modalUpdate(); search = 'Nintedanib'; filters2.category2 = ''; filters.category = ''; activeMenu = 'first'; activeMenu2 = 'first'; filters3.category3 = ''; activeMenu3 = 'first'; filters4.category4 = ''; activeMenu4 = 'first';">Study of Nintedanib (BIBF 1120) in Advanced Mesothelioma</a></li>
+                                <li><a ng-click="modalUpdate(); search = 'Intrapleural Virotherapy with Vaccinia Virus'; filters.category = ''; activeMenu = 'first'; filters2.category2 = ''; activeMenu2 = 'first'; filters3.category3 = ''; activeMenu3 = 'first'; filters4.category4 = ''; activeMenu4 = 'first';">Intrapleural Virotherapy with Vaccinia Virus in Mesothelioma</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+    var app = angular.module("myApp", ['ngAnimate']);
+    app.controller("myCtrl", function($scope, $timeout) {
+        $scope.myFunc = function(){
+            $("#replacedTitle").addClass('replacedTitleAnimation');
+            var replaceTitle = function(){
+                $("#replacedTitle").text('Your Search Results');
+            };
+            window.setTimeout(replaceTitle, 300);
+        };
+        var limitStep = 5;
+        $scope.limit = limitStep;
+        $scope.incrementLimit = function() {
+            $scope.limit += limitStep;
+        };
+        $scope.decrementLimit = function() {
+            $scope.limit -= limitStep;
+        };
+        $scope.modalUpdate = function(){
+            modalTimer();
+        };
+        $scope.filters = { };
+        $scope.filters2 = { };
+        $scope.filters3 = { };
+        $scope.filters4 = { };
+        $scope.activeMenu = 'first';
+        $scope.activeMenu2 = 'first';
+        $scope.activeMenu3 = 'first';
+        $scope.activeMenu4 = 'first';
+        $scope.clinicalTrials = [
+            {name: 'αDC1 Vaccine + Chemokine Modulatory Regimen (CKM) as Adjuvant Treatment in Mesothelioma', desc: 'This trial tests a novel group of drugs as a treatment for peritoneal surface malignancies, including peritoneal mesothelioma. Patients in this trial receive a DC vaccine, which is a vaccine created using cells from the patient’s body. Patients also receive a combination of 3 drugs:  celecoxib, interferon alfa (IFN), and rintatolimod.', category: 'peritoneal', category2: 'yes', category3: 'no', category4: 'yes', trialId: 'NCT02151448', sponsor: 'Pawel Kalinski', specialized1: 'Peritoneal', specialized2: 'Newly Diagnosed Patients', specialized3: 'Surgical Candidates', specialized4: 'Standard Chemotherapy Patients', trialLink: '001', modalId: '1', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Pleurectomy/Decortication with Intensity Modulated Radiation Therapy and Chemotherapy', desc: 'This trial is evaluating the use of intensity modulated radiation therapy (IMRT) in patients undergoing standard chemotherapy and a lung sparing pleurectomy with decortication. IMRT is a relatively new form of radiation that can target specific areas for radiation, avoiding healthy tissue.', category: 'pleural', category2: 'yes', category3: 'yes', category4: 'no', trialId: 'NCT00715611', sponsor: 'Memorial Sloan Kettering Cancer Center', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '002', modalId: '2', readMoreBtn: '/clinical-trial/pleurectomydecortication-intensity-modulated-radiation-therapy/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to This Trial'},
+
+//            {name: 'Phase II Study of Maintenance Pemetrexed in Mesothelioma', desc: 'Pemetrexed disodium is a drug that may be able to stop tumor growth by blocking enzymes that tumors need to grow. This trial tests pemetrexed as a maintenance therapy to keep mesothelioma from recurring in patients who are in remission.', category: 'pleural', category2: 'no', category3: 'no', category4: 'no', trialId: 'NCT01085630', sponsor: 'Alliance for Clinical Trials in Oncology', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '003', modalId: '3', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary'},
+
+            {name: 'Oncolytic Measles Virotherapy Used to Treat Mesothelioma', desc: 'An altered version of the measles virus was created to infect and kill cancer cells without damaging healthy cells. Researchers expect the measles to trigger the immune system to attack the tumor cells.', category: 'pleural', category2: 'no', category3: 'yes/no', category4: 'yes', trialId: 'NCT01503177', sponsor: 'Mayo Clinic', specialized1: 'Pleural', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '004', modalId: '4', readMoreBtn: '/clinical-trial/measles-virus-treating-pleural-mesothelioma-patients/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Use of LY3023414 for Advanced Mesothelioma', desc: 'LY3023414 is a drug being tested to treat patients with advanced stages of mesothelioma and other cancers. It is a capsule patients can take orally. LY3023414 works by blocking two of the proteins that help cancer grow. This trial is for patients whose tumors are not responding to standard treatments.', category: 'pleural/peritoneal', category2: 'no', category3: 'yes/no', category4: 'no', trialId: 'NCT01655225', sponsor: 'Eli Lilly and Company', specialized1: 'Pleural & Peritoneal', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '006', modalId: '6', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Study of Nintedanib (BIBF 1120) in Advanced Mesothelioma', desc: 'Nintedanib may be able to treat advanced pleural mesothelioma by inhibiting an enzyme called kinase. In this trial, patients will receive nintedanib or a placebo treatment. All patients will also receive pemetrexed and cisplatin which are the standard chemotherapy for mesothelioma.', category: 'pleural', category2: 'no', category3: 'yes', category4: 'no', trialId: 'NCT01907100', sponsor: 'Boehringer Ingelheim', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '008', modalId: '8', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to Similar Trials', recruiting: "No Longer Recruiting"},
+
+            {name: 'Study of the Glutaminase Inhibitor CB-839 in Solid Tumors', desc: 'CB-839 fights mesothelioma by blocking the enzyme glutaminase. Glutaminase is part of the amino acid glutamine, which helps tumor cells produce energy to grow and survive. Patients in this trial take the CB-839 capsule orally 2-3 times a day. This trial is for patients with solid tumors, including mesothelioma.', category: 'pleural', category2: 'no', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT02071862', sponsor: 'Calithera Biosciences, Inc.', specialized1: 'Pleural', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '010', modalId: '10', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Photofrin-mediated Photodyanmic Therapy After Radical Pleurectomy', desc: 'Participants in this trial will undergo surgery and then a portion of patients will receive photodynamic therapy (PDT). Patients undergoing PDT will receive Photofrin. Photofrin is a drug that can make mesothelioma cells sensitive to light so that doctors are able to destroy them with a laser light.', category: 'pleural', category2: 'yes', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT02153229', sponsor: 'Abramson Cancer Center', specialized1: 'Pleural', specialized2: 'All Patients', specialized3: 'Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '011', modalId: '11', readMoreBtn: '/clinical-trial/phase-ii-trial-intraopertive-photodynamic-therapy/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Pevonedistat: a Two Arms Study for Treating Mesothelioma', desc: 'The drug pevonedistat has shown a lot of success in many phase 1 clinical trials. Is it possible that it will exhibit the same outcome in combating mesothelioma? Researchers anticipate that it could.', category: 'pleural/peritoneal', category2: 'yes/no', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT03319537', sponsor: 'Memorial Sloan Kettering Cancer Center', specialized1: 'Pleural/Peritoneal', specialized2: 'All Patients', specialized3: 'Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '211', modalId: '211', readMoreBtn: '/clinical-trial/pevonedistat-a-two-arms-study-for-treating-mesothelioma/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Recruiting Multimodal for Pleural Mesothelioma Surgical Candidates', desc: 'Researchers believe that using atezolizumab, pemetrexed disodium, and cisplatin may be beneficial in treating pleural mesothelioma. In this study, investigators will be evaluating the use of these drugs before and after surgery. Some candidates may also experience radiation therapy.', category: 'pleural', category2: 'yes', category3: 'yes', category4: 'no', trialId: 'NCT03228537', sponsor: 'National Cancer Institute', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '212', modalId: '212', readMoreBtn: '/clinical-trial/recruiting-multimodal-trial-gives-hope-to-pleural-mesothelioma-surgical-candidates/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Anti-PD-1 Antibody Pembrolizumab (Keytruda) in Mesothelioma', desc: 'Immunotherapies work with the immune system to fight cancer. In this trial, researchers are using the antibody drug pembrolizumab (Keytruda) to block the mesothelioma cancer cells from receiving certain proteins that suppress the immune system.', category: 'pleural/peritoneal', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT02399371', sponsor: 'University of Chicago', specialized1: 'Pleural & Peritoneal', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '015', modalId: '15', readMoreBtn: '/clinical-trial/phase-ii-anti-pd-1-immunotherapy-for-mesothelioma/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Genetically Modified T-Cells in Treating Patients with Mesothelioma', desc: 'T cells are an important part of the immune system. In this trial, researchers take T cells from each patient and modify them to target WT1, a protein found on the surface of mesothelioma cells. The modified T cells are returned to the patient’s body, along with two immune boosting drugs, to fight mesothelioma.', category: 'pleural', category2: 'no', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT02408016', sponsor: 'Fred Hutchinson Cancer Research Center', specialized1: 'Pleural', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '016', modalId: '16', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial', recruiting: "No Longer Recruiting"},
+
+            {name: 'Pleural Mesothelioma Treated with Autologous T Cells Targeting Mesothelin', desc: 'Most mesothelioma cells over express a protein called mesothelin. Researchers take immune cells, called T cells, from each patient in this trial and modify them to target mesothelin. The modified T cells are returned to each patient to help the immune system fight mesothelioma. Some patients also receive chemotherapy.', category: 'pleural', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT02414269', sponsor: 'Memorial Sloan Kettering Cancer Center', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '017', modalId: '17', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            // Add this when you have a description:
+
+            // {name: 'Pevonedistat: a Two Arms Study for Treating Mesothelioma', desc: 'The drug pevonedistat has shown a lot of success in many phase 1 clinical trials. Is it possible that it will exhibit the same outcome in combating mesothelioma? Researchers anticipate that it could.', category: 'pleural/peritoneal', category2: 'yes/no', category3: 'yes/no', category4: 'yes/yes', trialId: 'NCT03319537', sponsor: 'Memorial Sloan Kettering Cancer Center', specialized1: 'Pleural & Peritoneal', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '088', modalId: '88', readMoreBtn: '/clinical-trial/pevonedistat-a-two-arms-study-for-treating-mesothelioma/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Intrapleural Cryotherapy for Malignant Pleural Mesothelioma', desc: 'A pleuroscopy is a minimally invasive procedure during which doctors take fluid and tumor samples. In this trial doctors use a freezing spray, called cryotherapy, during the pleuroscopy. Researchers believe freezing tumors can induce an immune response. Patients will also undergo standard mesothelioma surgery about 14 days after cryotherapy.', category: 'pleural', category2: 'yes', category3: 'yes', category4: 'no', trialId: 'NCT02464904', sponsor: 'Mayo Clinic', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '018', modalId: '18', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            // {name: 'MGA271 in Combination with Pembrolizumab in B7H3 Expressing Cancers', desc: 'Patients in this trial will receive two drugs: MGA271 (enoblituzumab) and Keytruda (pembrolizumab). Both of these drugs work to fight mesothelioma by blocking different proteins that mesothelioma cells need to grow and survive. This trial is for patients whose mesothelioma progressed after chemotherapy treatment.', category: 'pleural/peritoneal', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT02475213', sponsor: 'MacroGenics', specialized1: 'Pleural & Peritoneal', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '019', modalId: '19', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Methoxyamine Combined with Cisplatin and Pemetrexed in Advanced or Refractory Mesothelioma', desc: 'This trial is for patients whose mesothelioma has spread to other parts of their body. For these patients, standard chemotherapy did not work to treat their mesothelioma. In this trial, participants will receive a drug called methoxyamine which may be able to make standard chemotherapy more effective.', category: 'pleural/peritoneal', category2: 'no', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT02535312', sponsor: 'National Cancer Institute (NCI)', specialized1: 'Pleural & Peritoneal', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '020', modalId: '20', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Nintedanib (BIBF 1120) in Recurrent Pleural Mesothelioma', desc: 'Nintedanib may be able to block certain enzymes that mesothelioma cells need to grow. Nintedanib is being tested to treat patients whose mesothelioma returned after previous treatment. Patients with recurrent or stage IV mesothelioma may be eligible to participate in this trial.', category: 'pleural', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT02568449', sponsor: 'Barbara Ann Karmanos Cancer Institute', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '021', modalId: '21', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'MEDI4736 or MEDI4736 + Tremelimumab in Surgically Resectable Mesothelioma', desc: 'MEDI4736 and tremelimumab are both immunotherapy drugs and treat mesothelioma by encouraging the body’s immune system to attack the cancer. In this trial some patients will receive MEDI4736 and some patients will receive both MEDI4736 and tremelimumab. All participants will be treated with necessary surgery.', category: 'pleural', category2: 'yes', category3: 'yes', category4: 'yes/no', trialId: 'NCT02592551', sponsor: 'Baylor College of Medicine', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '022', modalId: '22', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Transarterial Chemoperfusion for Unresectable Mesothelioma', desc: 'This trial explores a new way of treating patients with chemotherapy. Using transarterial chemoperfusion, doctors can administer chemotherapy drugs directly to the location of a patient’s cancer. This trial is for pleural mesothelioma patients who are not eligible for surgery.', category: 'pleural', category2: 'no', category3: 'no', category4: 'yes/no', trialId: 'NCT02611037', sponsor: 'H. Lee Moffitt Cancer Center and Research Institute', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '024', modalId: '24', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            // {name: 'Safety Study of MGD009 in B7-H3-expressing Tumors', desc: 'The purpose of this trial is to assess the safety of MGD009 at different doses. MGD009 inhibits a protein called B7-H3 which is overexpressed in some patients’ mesothelioma cells. This drug also helps the body’s immune system recognize these cells so that it can attack them.', category: 'pleural/peritoneal', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT02628535', sponsor: 'MacroGenics', specialized1: 'Pleural & Peritoneal', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '025', modalId: '25', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Anetumab Ravtansine in Combination With Pemetrexed and Cisplatin in Mesothelioma', desc: 'Anetumab ravtansine is a drug that targets cells that overexpress a protein called mesothelin. Most mesothelioma cells overexpress mesothelin. In this trial, researchers treat mesothelioma patients with anetumab ravtansine in combination with standard chemotherapy for mesothelioma.', category: 'pleural/peritoneal', category2: 'no', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT02639091', sponsor: 'Bayer', specialized1: 'Pleural & Peritoneal', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '026', modalId: '26', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'CRS-207 With Keytruda in Previously Treated Pleural Mesothelioma', desc: 'This trial tests Keytruda (pembrolizumab, MK-3475) in combination with CRS-207. Both of these immunotherapy drugs have had amazing results in previous and ongoing clinical trials. This trial is intended for pleural mesothelioma patients who have been failed by past treatments.', category: 'pleural', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT03175172', sponsor: 'Aduro Biotech, Inc.', specialized1: 'Pleural', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '105', modalId: '105', readMoreBtn: '/clinical-trial/crs-207-keytruda-previously-treated-pleural-mesothelioma/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to Similar Trials', recruiting: "No Longer Recruiting"},
+
+            {name: 'Accelerated Hypofractionated Radiation Therapy Immediately Before Surgery in Mesothelioma', desc: 'Accelerated hypofractionated radiation therapy is radiation treatments given in fewer treatments but in larger doses. Researchers believe giving this type of radiation immediately before surgery may be able to reduce side effects and improve survival for pleural mesothelioma patients.', category: 'pleural', category2: 'yes', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT02672033', sponsor: 'Jonsson Comprehensive Cancer Center', specialized1: 'Pleural', specialized2: 'All Patients', specialized3: 'Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '028', modalId: '28', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Anti-PD-1 Antibody Pembrolizumab in Patients With Resectable Pleural Mesothelioma', desc: 'Patients in this trial are treated with the immunotherapy drug pembrolizumab (Keytruda), then surgery, and then chemotherapy. To participate in this trial, patients must have pleural mesothelioma and be able to undergo surgery.', category: 'pleural', category2: 'yes', category3: 'yes', category4: 'no', trialId: 'NCT02707666', sponsor: 'University of Chicago', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '029', modalId: '29', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'ADI-PEG 20, an Arginine Degrading Enzyme, with Pemetrexed/Cisplatin in Mesothelioma', desc: 'ADI-PEG 20 is an experimental drug that blocks an amino acid called arginine. Researchers believe that restricting arginine will cause pleural mesothelioma cells to starve and die. Patients in this trial will receive ADI-PEG 20 as well as standard chemotherapy with pemetrexed (Alimta) and cisplatin.', category: 'pleural', category2: 'no', category3: 'yes', category4: 'no', trialId: 'NCT02709512', sponsor: 'Polaris Group', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '030', modalId: '30', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Mesothelin-Targeted Immunotoxin LMB-100 in Advanced Mesothelioma', desc: 'LMB-100 is a novel drug that may be able to kill cancer cells by binding to a protein called mesothelin. Mesothelin is not usually found in normal tissue but exists in high levels in most mesothelioma cells. Researchers hope LMB-100 will become an effective treatment option for mesothelioma patients who aren’t eligible for surgery.', category: 'pleural/peritoneal', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT02798536', sponsor: 'National Cancer Institute (NCI)', specialized1: ' Pleural & Peritoneal', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '031', modalId: '31', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Continuous 24 Hour Intravenous Infusion of Mithramycin in Mesothelioma', desc: 'Mithramycin is a drug being tested to treat cancers in the chest, including pleural mesothelioma. Every 14 days, patients in this trial will be treated with mithramycin for 24 hr through an IV. This trial is meant to treat patients whose cancer is inoperable.', category: 'pleural', category2: 'no', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT02859415', sponsor: 'National Cancer Institute (NCI)', specialized1: 'Pleural', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '032', modalId: '32', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Study of the EZH2 Inhibitor Tazemetostat in Malignant Mesothelioma', desc: 'Patients in this trial will take tazemetostat orally twice a day. Tazemetostat may be able to slow tumor cell proliferation by inhibiting the enzyme EZH2. This trial is for any type of mesothelioma patient whose disease has been difficult to treat or is recurring.', category: 'pleural/peritoneal/pericardial/testicular', category2: 'yes/no', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT02860286', sponsor: 'Epizyme, Inc.', specialized1: 'Pleural, Peritoneal, Pericardial & Testicular', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '033', modalId: '33', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial', recruiting: "No Longer Recruiting"},
+
+            {name: 'Targeted Therapies Versus Chemotherapy as First Line Treatment', desc: 'Patients with unresectable pleural mesothelioma will receive nivolumab + ipilimumab OR pemetrexed + cisplatin (or carboplatin). Nivolumab and ipilimumab are often used together to treat several types of cancer. They are both monoclonal antibodies that work with the immune system to kill tumor cells.', category: 'pleural', category2: 'no', category3: 'yes', category4: 'no', trialId: 'NCT02899299', sponsor: 'Bristol-Myers Squibb', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '034', modalId: '34', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Bosutinib + Pemetrexed in Patients With Metastatic Solid Tumors', desc: 'Bosutinib is a targeted therapy, specifically called a tyrosine kinase inhibitor (TKI). This drug works by blocking a certain protein that cancer cells need to grow. Patients in this trial will receive bosutinib and the chemotherapy drug pemetrexed.', category: 'pleural', category2: 'no', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT03023319', sponsor: 'Nagla Karim', specialized1: 'Pleural', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '035', modalId: '35', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Adcetris for All Types of CD30+ Mesothelioma', desc: 'Adcetris combats mesothelioma in patients whose tumors express the CD30 protein. Adcetris works as a targeted therapy and also has characteristics of a chemotherapy. Non-surgical candidates with any cell type and any primary site can participate if they test positive for CD30 expression.', category: 'pleural/peritoneal/pericardial/testicular', category2: 'no', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT03007030', sponsor: 'M.D. Anderson Cancer Center', specialized1: 'Any Cell Type', specialized2: 'Any Primary Site', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '101', modalId: '101', readMoreBtn: '/clinical-trial/investigational-drug-adcetris-to-treat-malignant-mesothelioma/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Atezolizumab and Bevacizumab to Control Rare Solid Tumors', desc: 'Atezolizumab (Tecentriq) and bevacizumab (Avastin) are combined in this trial to control mesothelioma and other rare tumors. Atezolizumab helps the immune system to recognize and attack cancer. Bevacizumab prevents tumors from forming new blood cells that help them grow. Researchers hope these treatments will work well together.', category: 'pleural/peritoneal', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT03074513', sponsor: 'M.D. Anderson Cancer Center', specialized1: 'Pleural & Peritoneal', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '080', modalId: '80', readMoreBtn: '#openModal', readMoreText: 'Read Trial Page', readMoreBtn: '/clinical-trial/combining-atezolizumab-and-bevacizumab-to-control-rare-tumors/', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'MEDI4736 + Chemotherapy for Unresectable Pleural Mesothelioma', desc: 'Durvalumab (MEDI4736, Imfinzi) helps the immune system detect cancer and attack it. This trial is for pleural mesothelioma patients whose cancer cannot be surgically removed. Trial participants will receive durvalumab along with standard chemotherapy which consists of pemetrexed (Alimta) and cisplatin (Platinol).', category: 'pleural', category2: 'no', category3: 'yes', category4: 'no', trialId: 'NCT02899195', sponsor: 'PrECOG, LLC. and AstraZeneca', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '236', modalId: '236', readMoreBtn: '/clinical-trial/treating-unresectable-mesothelioma-with-durvalumab-and-chemotherapy/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Pembrolizumab After Radiation Therapy for Lung-Intact Pleural Mesothelioma', desc: 'Pembrolizumab (MK-3475, Keytruda) is a type of drug that helps the immune system identify and attack cancer cells. In this trial, patients will receive radiation therapy followed by pembrolizumab. Patients must have pleural mesothelioma and still have both of their lungs in order to qualify for this trial', category: 'pleural', category2: 'yes/no', category3: 'yes/no', category4: 'yes/no', trialId: 'NCT02959463', sponsor: 'M.D. Anderson Cancer Center', specialized1: 'Pleural', specialized2: 'All Patients', specialized3: 'Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '037', modalId: '37', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Durvalumab + Tremelimumab in Malignant Pleural Mesothelioma', desc: 'Two different types of immunotherapy drugs are being tested together in this trial. Durvalumab (Imfinzi) and tremelimumab have both been tested separately to treat cancers but researchers believe they may be able to treat mesothelioma as a team.', category: 'pleural', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT03075527', sponsor: 'Dana-Farber Cancer Institute', specialized1: 'Pleural', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients',  trialLink: '041', modalId: '41', readMoreBtn: '/clinical-trial/durvalumab-tremelimumab-malignant-pleural-mesothelioma/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'CAR T Cells in Mesothelin Expressing Cancers', desc: 'T cells are an important part of a person’s immune system. CAR t cells are t cells that have been modified to target a specific protein expressed by cancer cells. In this case, the CAR t cells target the protein mesothelin. Both pleural and peritoneal mesothelioma patients are eligible for this trial.', category: 'pleural/peritoneal', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT03054298', sponsor: 'University of Pennsylvania', specialized1: 'Pleural & Peritoneal', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '235', modalId: '235', readMoreBtn: '/clinical-trial/using-modified-t-cells-to-combat-mesothelioma/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to Similar Trials', recruiting: "No Longer Recruiting"},
+
+            {name: 'Amatuximab in Combination with Pemetrexed and Cisplatin in Mesothelioma', desc: 'The standard treatment for pleural mesothelioma is chemotherapy with two drugs: pemetrexed (Alimta) and cisplatin. This trial tests adding amatuximab to the combination. Patients with unresectable pleural mesothelioma are eligible if they have not had systemic chemotherapy or radiation therapy.', category: 'pleural', category2: 'no', category3: 'yes', category4: 'no', trialId: 'NCT02357147', sponsor: 'Morphotek', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '013', modalId: '13', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to Similar Trials', recruiting: "No Longer Recruiting"},
+
+            {name: 'Treating Mesothelioma Patients with Advanced Solid Tumors', desc: 'Multimodal therapy has been proven to help improve a mesothelioma patient’s quality of life. In some cases, it can even help them reach a state of remission. Researchers hope that the combination of immunotherapy drug IPI-549 and chemotherapy agent nivolumab will help combat mesothelioma.', category: 'pleural/peritoneal', category2: 'yes/no', category3: 'no', category4: 'yes', trialId: 'NCT02637531', sponsor: 'Infinity Pharmaceuticals Inc.', specialized1: 'Pleural/Peritoneal', specialized2: 'All Patients', specialized3: 'Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '113', modalId: '113', readMoreBtn: '/clinical-trial/ipi-549-and-nivolumab-treating-mesothelioma-patients-with-advanced-solid-tumors/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to This Trial'},
+
+            {name: 'Anetumab Ravtansine as 2nd Line Treatment in Advanced Mesothelioma', desc: 'Anetumab ravtansine may be able to prevent disease progression in patients whose mesothelioma cells overexpress the protein mesothelin. This trial is for pleural mesothelioma patients who have already been treated with chemotherapy and need a 2nd line treatment.', category: 'pleural', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT02610140', sponsor: 'Bayer', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '023', modalId: '23', readMoreBtn: '/clinical-trial/phase-ii-preventing-mesothelioma-progression/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to Similar Trials', recruiting: "No Longer Recruiting"},
+
+            {name: 'Neoadjuvant Defactinib (VS-6063) in Surgical Candidates', desc: 'Neoadjuvant treatments are used before surgery to shrink tumors and improve surgery results. Patients in this trial will be treated with defactinib (VS-6063) twice daily before having surgery to remove their tumors. Defactinib targets mesothelioma stem cells by blocking certain signaling pathways.', category: 'pleural', category2: 'yes', category3: 'yes', category4: 'no', trialId: 'NCT02004028', sponsor: 'Verastem, Inc.', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '009', modalId: '9', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to Similar Trials', recruiting: "Completed"},
+
+            {name: 'Intrapleural Virotherapy with Vaccinia Virus in Mesothelioma', desc: 'This trial treats pleural mesothelioma with the virotherapy drug GL-ONC1. GL-ONC1 is a modified form of the vaccinia virus, which was used to make the smallpox vaccine. This treatment has already proven to be effective in some cases of mesothelioma. Researchers believe it may be effective for all stages of mesothelioma.', category: 'pleural', category2: 'no', category3: 'yes/no', category4: 'yes', trialId: 'NCT01766739', sponsor: 'Memorial Sloan Kettering Cancer Center', specialized1: 'Pleural', specialized2: 'All Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '007', modalId: '7', readMoreBtn: '/clinical-trial/intrapleural-virotherapy-mesothelioma/', readMoreText: 'Read Trial Page', trialBtnText: 'Get Connected to Similar Trials', recruiting: "No Longer Recruiting"},
+
+            {name: 'Phase II Study of Mithramycin in Mesothelioma', desc: 'Mithramycin, also known as plicamycin, is an anti-cancer drug. Researchers believe it may be effective in treating certain cancers of the chest, including pleural mesothelioma. This trial is for patients whose mesothelioma cannot be surgically removed.', category: 'pleural', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT01624090', sponsor: 'National Cancer Institute (NCI)', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '005', modalId: '5', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to Similar Trials', recruiting: 'No Longer Recruiting'},
+
+              {name: 'Alisertib (MLN8237) in Salvage Malignant Mesothelioma', desc: 'This trial is for patients with unresectable pleural mesothelioma. Patients will take alisertib tablets twice a day for the first 7 days of a 21 day cycle. Doctors will check the patient’s disease status after every 2 cycles. Patients may continue taking alisertib as long as it benefits them.', category: 'pleural', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT02293005', sponsor: 'M.D. Anderson Cancer Center', specialized1: 'Pleural', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '012', modalId: '12', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to Similar Trials', recruiting: 'No Longer Recruiting'},
+
+            {name: 'Use of Enoblituzumab (MGA271) in Combination with Yervoy (Ipilimumab) in Mesothelioma', desc: 'Mesothelioma patients may be eligible to participate in this trial if their disease has progressed despite systemic chemotherapy treatments. Patients in this trial are treated with 2 drugs, enoblituzumab (MGA271) and Yervoy (ipilimumab). Both drugs work with the body’s immune system to fight cancer.', category: 'pleural/peritoneal', category2: 'no', category3: 'no', category4: 'yes', trialId: 'NCT02381314', sponsor: 'MacroGenics', specialized1: 'Pleural & Peritoneal', specialized2: 'Newly Diagnosed Patients', specialized3: 'Non-Surgical Candidates',  specialized4: 'Standard Chemotherapy Patients', trialLink: '014', modalId: '14', readMoreBtn: '#openModal', readMoreText: 'Read Trial Summary', trialBtnText: 'Get Connected to Similar Trials', recruiting: 'No Longer Recruiting'},
+        ];
+//        Active Menu 2 Filter Off Functions
+        offActiveMenu2 = function() {
+            $scope.activeMenu2 = 'first';
+            $scope.filters2.category2 = '';
+        };
+        $scope.turnOffActiveMenu2Second = function(){
+            if($scope.activeMenu2 === 'first') {
+                console.log('first');
+            }
+            else if($scope.activeMenu2 === 'second') {
+                $timeout(offActiveMenu2, 50);
+            }
+        };
+        $scope.turnOffActiveMenu2Third = function(){
+            if($scope.activeMenu2 === 'first') {
+                console.log('first');
+            }
+            else if($scope.activeMenu2 === 'third') {
+                $timeout(offActiveMenu2, 50);
+            }
+        };
+//        Active Menu 3 Filter Off Functions
+        offActiveMenu3 = function() {
+            $scope.activeMenu3 = 'first';
+            $scope.filters3.category3 = '';
+        };
+        $scope.turnOffActiveMenu3Second = function(){
+            if($scope.activeMenu3 === 'first') {
+                console.log('first');
+            }
+            else if($scope.activeMenu3 === 'second') {
+                $timeout(offActiveMenu3, 50);
+            }
+        };
+        $scope.turnOffActiveMenu3Third = function(){
+            if($scope.activeMenu3 === 'first') {
+                console.log('first');
+            }
+            else if($scope.activeMenu3 === 'third') {
+                $timeout(offActiveMenu3, 50);
+            }
+        };
+//        Active Menu 4 Filter Off Functions
+        offActiveMenu4 = function() {
+            $scope.activeMenu4 = 'first';
+            $scope.filters4.category4 = '';
+        };
+        $scope.turnOffActiveMenu4Second = function(){
+            if($scope.activeMenu4 === 'first') {
+                console.log('first');
+            }
+            else if($scope.activeMenu4 === 'second') {
+                $timeout(offActiveMenu4, 50);
+            }
+        };
+        $scope.turnOffActiveMenu4Third = function(){
+            if($scope.activeMenu4 === 'first') {
+                console.log('first');
+            }
+            else if($scope.activeMenu4 === 'third') {
+                $timeout(offActiveMenu4, 50);
+            }
+        };
+    });
+</script>
+         </body> 
