@@ -1,0 +1,1003 @@
+@-webkit-keyframes replacedTitleSlide {
+    0% {
+        -webkit-transform: translate3d(0px,0px,0px);
+        transform: translate3d(0px,0px,0px)
+    }
+
+    50% {
+        -webkit-transform: translate3d(50px,0px,0px);
+        transform: translate3d(50px,0px,0px)
+    }
+
+    100% {
+        -webkit-transform: translate3d(0px,0px,0px);
+        transform: translate3d(0px,0px,0px)
+    }
+}
+
+@keyframes replacedTitleSlide {
+    0% {
+        -webkit-transform: translate3d(0px,0px,0px);
+        transform: translate3d(0px,0px,0px)
+    }
+
+    50% {
+        -webkit-transform: translate3d(50px,0px,0px);
+        transform: translate3d(50px,0px,0px)
+    }
+
+    100% {
+        -webkit-transform: translate3d(0px,0px,0px);
+        transform: translate3d(0px,0px,0px)
+    }
+}
+
+@-webkit-keyframes replacedTitleFade {
+    0% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes replacedTitleFade {
+    0% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList p.replacedTitleAnimation {
+    position: relative;
+    -webkit-animation: replacedTitleSlide 0.6s cubic-bezier(0.1,0.59,0.78,0.78),replacedTitleFade 0.6s ease;
+    animation: replacedTitleSlide 0.6s cubic-bezier(0.1,0.59,0.78,0.78),replacedTitleFade 0.6s ease
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem.ng-enter {
+    opacity: 0;
+    -webkit-transform: translate3d(150px,0px,0px);
+    transform: translate3d(150px,0px,0px);
+    -webkit-transition: .5s all;
+    transition: .5s all
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem.ng-move {
+    opacity: 0;
+    -webkit-transform: translate3d(0px,30px,0px);
+    transform: translate3d(0px,30px,0px);
+    -webkit-transition: .4s all;
+    transition: .4s all
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem.ng-enter-active {
+    opacity: 1;
+    -webkit-transform: translate3d(0px,0px,0px);
+    transform: translate3d(0px,0px,0px)
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem.ng-leave {
+    opacity: 1;
+    -webkit-transform: translate3d(0px,0px,0px);
+    transform: translate3d(0px,0px,0px);
+    -webkit-transition: .5s all;
+    transition: .5s all
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem.ng-leave-active {
+    opacity: 0;
+    -webkit-transform: translate3d(150px,0px,0px);
+    transform: translate3d(150px,0px,0px)
+}
+
+ul.main-nav {
+    display: none
+}
+
+ul.main-nav.bottom {
+    display: block
+}
+
+div#angularAppCtrl {
+    background-color: #fafafa
+}
+
+div#clinicalTrialsAngularApp {
+    background-color: #fff;
+    border-right: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    padding-top: 30px;
+    padding-bottom: 100px;
+    overflow: hidden
+}
+
+div#clinicalTrialsAngularApp a:hover {
+    cursor: pointer
+}
+
+div#clinicalTrialsAngularApp h2 {
+    font-size: 26px;
+    margin-left: 20px;
+    margin-bottom: 20px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar {
+    background-color: #03738E;
+    min-height: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 3px;
+    position: relative
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar p#filterBarPatientInfo {
+    color: white;
+    padding-top: 15px;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-family: 'Roboto',Arial,Helvetica,sans-serif;
+    font-size: 14px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar span.filterBarText {
+    line-height: 2.2em;
+    font-size: 13px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter {
+    width: 20%;
+    color: white;
+    padding: 10px;
+    position: relative;
+    float: left;
+    margin-left: 10px;
+    z-index: 6
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter:after {
+    content: '';
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background: url("../../images/clinicalTrialsAssets/dropdownIcon.png") no-repeat;
+    right: 12px;
+    top: 42px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul {
+    display: none;
+    position: absolute;
+    background: white;
+    width: 90%;
+    top: 74px;
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-left: 1px solid lightgray
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem1 {
+    display: none
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem2,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem3,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem4,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem5 {
+    padding-left: 14px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem2 a,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem3 a,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem4 a,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem5 a {
+    display: inline-block;
+    width: 100%;
+    color: black;
+    font-size: 14px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem2 a:hover,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem3 a:hover,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem4 a:hover,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter ul li#hiddenDropdownItem5 a:hover {
+    color: #1999C0
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter li#diagnosisDropdown {
+    display: block;
+    background: white;
+    color: black;
+    border-radius: 3px;
+    height: 25px;
+    font-size: 14px;
+    padding-left: 15px;
+    padding-top: 10px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter li#dropdownItem2,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter li#dropdownItem3,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter li#dropdownItem4,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter li#dropdownItem5 {
+    display: none;
+    position: absolute;
+    top: 47px;
+    color: black;
+    font-size: 14px;
+    background: white;
+    width: 80%;
+    height: 20px;
+    left: 24px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer {
+    color: white;
+    width: 22.5%;
+    position: relative;
+    top: 10px;
+    float: left;
+    margin-left: 34px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer div#newlyDiagnosedFilter {
+    border: 1px solid #025D73;
+    border-radius: 3px;
+    height: 35px;
+    width: 90%
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer div#newlyDiagnosedFilter a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding-top: 9px;
+    color: white;
+    font-size: 13px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer div#newlyDiagnosedFilter a.active {
+    background-color: #03677E;
+    position: relative
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer div#newlyDiagnosedFilter div#newlyDiagnosedItem2 a.active:after {
+    content: '';
+    position: absolute;
+    left: 68%;
+    top: 11px;
+    width: 14px;
+    height: 14px;
+    background: url("../../images/clinicalTrialsAssets/check_mark.png") no-repeat
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer div#newlyDiagnosedFilter div#newlyDiagnosedItem3 a.active:after {
+    content: '';
+    position: absolute;
+    left: 68%;
+    top: 11px;
+    width: 14px;
+    height: 14px;
+    background: url("../../images/clinicalTrialsAssets/check_mark.png") no-repeat
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer div#newlyDiagnosedFilter div#newlyDiagnosedItem3 a {
+    border-left: 1px solid #025D73
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer div#newlyDiagnosedItem1 {
+    display: none
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer div {
+    width: 50%;
+    float: left;
+    text-align: center;
+    height: 78%
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer {
+    color: white;
+    width: 22.5%;
+    position: relative;
+    top: 10px;
+    float: left;
+    margin-left: 20px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateFilter {
+    border: 1px solid #025D73;
+    border-radius: 3px;
+    height: 35px;
+    width: 90%
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateFilter a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding-top: 9px;
+    color: white;
+    font-size: 13px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateFilter a.active {
+    background-color: #03677E
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateItem1 {
+    display: none
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateItem2 {
+    position: relative
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateItem2 a.active:after {
+    content: '';
+    position: absolute;
+    left: 68%;
+    top: 11px;
+    width: 14px;
+    height: 14px;
+    background: url("../../images/clinicalTrialsAssets/check_mark.png") no-repeat
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateItem3 {
+    position: relative
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateItem3 a {
+    border-left: 1px solid #025D73
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateItem3 a.active:after {
+    content: '';
+    position: absolute;
+    left: 68%;
+    top: 11px;
+    width: 14px;
+    height: 14px;
+    background: url("../../images/clinicalTrialsAssets/check_mark.png") no-repeat
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div {
+    width: 50%;
+    float: left;
+    text-align: center;
+    height: 78%
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer {
+    color: white;
+    width: 22.5%;
+    position: relative;
+    top: 10px;
+    float: left;
+    margin-left: 20px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientFilter {
+    border: 1px solid #025D73;
+    border-radius: 3px;
+    height: 35px;
+    width: 90%
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientFilter a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding-top: 9px;
+    color: white;
+    font-size: 13px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientFilter a.active {
+    background-color: #03677E
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientItem1 {
+    display: none
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientItem2 {
+    position: relative
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientItem2 a.active:after {
+    content: '';
+    position: absolute;
+    left: 68%;
+    top: 11px;
+    width: 14px;
+    height: 14px;
+    background: url("../../images/clinicalTrialsAssets/check_mark.png") no-repeat
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientItem3 {
+    position: relative
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientItem3 a {
+    border-left: 1px solid #025D73
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientItem3 a.active:after {
+    content: '';
+    position: absolute;
+    left: 68%;
+    top: 11px;
+    width: 14px;
+    height: 14px;
+    background: url("../../images/clinicalTrialsAssets/check_mark.png") no-repeat
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div {
+    width: 50%;
+    float: left;
+    text-align: center;
+    height: 78%
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchDropdownContainer {
+    clear: both;
+    height: 47px;
+    position: relative;
+    z-index: 5
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchDropdownContainer div#topSearchDropdownBtn {
+    width: 195px;
+    float: right;
+    text-align: left;
+    height: 35px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    background-color: #03738E;
+    margin-right: 4.1%;
+    border-radius: 3px;
+    padding-top: 10px;
+    padding-left: 10px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchDropdownContainer div#topSearchDropdownBtn a {
+    font-size: 14px;
+    color: #abe6f8;
+    font-family: 'Roboto',Arial,Helvetica,sans-serif
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchDropdownContainer div#topSearchDropdownBtn a:after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    right: 52px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #abe6f8
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchDropdownContainer div#topSearchDropdownBtn.searchBarOpen {
+    background-color: #03677E
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBarContainer {
+    clear: both;
+    width: 91.35%;
+    left: 4.3%;
+    border-radius: 3px;
+    height: 50px;
+    background: #03677e;
+    position: absolute;
+    top: 130px;
+    padding-top: 22px;
+    padding-left: 1px;
+    padding-right: 1px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBar {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBar p {
+    font-size: 13px;
+    position: relative
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBar p:before {
+    content: '';
+    position: absolute;
+    background: url("../../images/clinicalTrialsAssets/Search.png") no-repeat;
+    height: 20px;
+    width: 20px;
+    top: 7px;
+    left: 40px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBar input {
+    margin-left: 30px;
+    width: 78%;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
+    padding-left: 40px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList {
+    font-family: 'Roboto',Arial,Helvetica,sans-serif
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList p#replacedTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 60px;
+    margin-left: 20px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem {
+    width: 590px;
+    min-height: 320px;
+    float: left;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ECF5F7;
+    border: 1px solid #D4ECF2;
+    overflow: hidden
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem h2 {
+    width: 75%;
+    font-size: 20px;
+    font-family: 'Roboto',Arial,Helvetica,sans-serif;
+    font-weight: 100;
+    line-height: 24px;
+    float: left;
+    margin-left: 0;
+    color: #656565
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialIdNum {
+    width: 25%;
+    float: left;
+    height: 40px;
+    text-align: right;
+    font-weight: 300;
+    padding-top: 3px;
+    color: #656565
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialIdNum p {
+    font-size: 18px;
+    color: #656565
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem p.trialSponsor {
+    clear: both;
+    padding-top: 5px;
+    color: #656565
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem p.trialSponsor span {
+    font-weight: bold
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem p.trialSponsor span.sponsorPipe {
+    color: #1BA3C7;
+    font-weight: bold
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem p.trialDescription {
+    padding-top: 20px;
+    line-height: 1.5em;
+    font-weight: 300;
+    position: relative;
+    color: #656565
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem p.trialDescription:after {
+    content: '';
+    width: 110%;
+    height: 10px;
+    position: absolute;
+    border-bottom: 1px solid #D4ECF2;
+    bottom: -20px;
+    left: -23px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem ul.specializedForList {
+    font-size: 14px;
+    margin-top: 35px;
+    line-height: 2em;
+    color: #656565
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem ul.specializedForList li {
+    line-height: 1.5em;
+    padding-left: 20px;
+    position: relative;
+    color: #353535;
+    font-family: Arial,Helvetica,sans-serif
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem ul.specializedForList li:after {
+    font-family: "MesoGuideIcons";
+    content: '\7d';
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    font-size: 10px;
+    color: #1999c0
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialButtonRow {
+    margin-top: 20px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialButtonRow a.getConnectedButton {
+    height: 30px;
+    width: 250px;
+    color: #353535;
+    background-color: #FFE3A1;
+    border: 1px solid #ffba1a;
+    border-radius: 3px;
+    display: inline-block;
+    text-align: center;
+    padding-top: 15px;
+    -webkit-transition: all .5s;
+    transition: all .5s
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialButtonRow a.getConnectedButton:hover {
+    background-color: #ffcc57
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialReadMoreButton {
+    height: 30px;
+    width: 180px;
+    border-radius: 3px;
+    text-align: center;
+    padding-top: 15px;
+    display: inline-block;
+    float: right;
+    background-color: #F5FBFC;
+    border: 1px solid #d4ecf2;
+    -webkit-transition: all .5s;
+    transition: all .5s
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialReadMoreButton:hover {
+    background-color: #d7e9ef
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsSidebar {
+    width: 300px;
+    min-height: 400px;
+    float: right
+}
+
+div#clinicalTrialsAngularApp div#noResultsTab {
+    padding-left: 20px;
+    position: absolute;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 20px
+}
+
+div#clinicalTrialsAngularApp div#noResultsTab p#noResultsParagraph {
+    font-family: 'Roboto',Arial,Helvetica,sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    margin-bottom: 35px
+}
+
+div#clinicalTrialsAngularApp div#noResultsTab .noResultsList {
+    font-family: 'Roboto',Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 20px
+}
+
+div#clinicalTrialsAngularApp div#noResultsTab .noResultsList li {
+    font-weight: 300;
+    margin: 5px 0;
+    padding-left: 20px;
+    position: relative
+}
+
+div#clinicalTrialsAngularApp div#noResultsTab .noResultsList li a {
+    text-decoration: underline
+}
+
+div#clinicalTrialsAngularApp div#noResultsTab .noResultsList li a:hover {
+    color: #056883
+}
+
+div#clinicalTrialsAngularApp div#noResultsTab .noResultsList li:after {
+    font-family: "MesoGuideIcons";
+    content: '\7d';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    color: #1999c0;
+    font-size: 10px
+}
+
+div#clinicalTrialsAngularApp div#noResultsTab .noResultsList li:first-child {
+    margin-top: 10px
+}
+
+div#clinicalTrialsAngularApp div#noResultsTab ol.noResultsList li {
+    list-style-type: none;
+    padding-left: 20px;
+    position: relative;
+    counter-increment: customListCounter
+}
+
+div#clinicalTrialsAngularApp div#noResultsTab ol.noResultsList li:after {
+    content: counter(customListCounter);
+    font-family: 'Roboto';
+    font-size: 14px;
+    color: black
+}
+
+.ng-scope {
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    background-color: white
+}
+
+#ContentPage #PageContent {
+    padding-bottom: 0
+}
+
+#LowerContentPage {
+    padding-top: 0
+}
+
+#loadMoreButtonSize {
+    width: 250px;
+    height: 30px;
+    text-align: center;
+    padding-top: 15px;
+    border-radius: 3px;
+    border: 1px solid;
+    text-transform: none
+}
+
+@media screen and (max-width: 990px) {
+    div#clinicalTrialsAngularApp div#clinicalTrialsSidebar {
+        height:0;
+        min-height: 0
+    }
+
+    div#clinicalTrialsAngularApp div#noResultsTab {
+        position: relative
+    }
+}
+
+@media screen and (max-width: 875px) {
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar span.filterBarText {
+        line-height:2.1em
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter {
+        width: 45%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter:after {
+        top: 41px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer {
+        width: 45%;
+        float: right;
+        margin-left: 0;
+        margin-right: 20px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer div#newlyDiagnosedFilter {
+        width: 100%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer div#newlyDiagnosedFilter div#newlyDiagnosedItem2 a.active:after,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer div#newlyDiagnosedFilter div#newlyDiagnosedItem3 a.active:after {
+        left: 60%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer {
+        clear: both;
+        width: 45%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateFilter {
+        width: 100%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateFilter div#surgicalCandidateItem2 a.active:after,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer div#surgicalCandidateFilter div#surgicalCandidateItem3 a.active:after {
+        left: 60%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer {
+        width: 45%;
+        float: right;
+        margin-left: 0;
+        margin-right: 20px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientFilter {
+        width: 100%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientFilter div#chemoPatientItem2 a.active:after,div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer div#chemoPatientFilter div#chemoPatientItem3 a.active:after {
+        left: 60%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchDropdownContainer {
+        padding-top: 20px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchDropdownContainer div#topSearchDropdownBtn a:after {
+        top: 38px;
+        right: 45px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBarContainer {
+        top: 226px
+    }
+}
+
+@media screen and (max-width: 810px) {
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar {
+        min-height:145px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem {
+        width: initial
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem p.trialDescription {
+        padding-top: 40px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem p.trialDescription:before {
+        content: '';
+        width: 100%;
+        height: 10px;
+        position: absolute;
+        border-top: 1px solid #D4ECF2;
+        top: 20px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem p.trialDescription:after {
+        left: 0;
+        width: 100%
+    }
+}
+
+@media screen and (max-width: 750px) {
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchDropdownContainer div#topSearchDropdownBtn a:after {
+        right:40px
+    }
+}
+
+@media screen and (max-width: 640px) {
+    #main {
+        position:static
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchDropdownContainer div#topSearchDropdownBtn a:after {
+        right: 35px
+    }
+}
+
+@media screen and (max-width: 600px) {
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar {
+        min-height:290px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar ul#diagnosisFilter {
+        float: none;
+        width: initial;
+        padding-right: 11px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#newlyDiagnosedContainer {
+        float: none;
+        width: initial;
+        clear: both;
+        margin-left: 20px;
+        padding-bottom: 40px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#surgicalCandidateContainer {
+        float: none;
+        width: initial;
+        clear: both;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-bottom: 40px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#chemoPatientContainer {
+        float: none;
+        width: initial;
+        clear: both;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-bottom: 40px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchDropdownContainer div#topSearchDropdownBtn {
+        margin-right: 4%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBar {
+        width: 90%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBarContainer {
+        top: 363px
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem h2 {
+        width: 100%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialIdNum {
+        float: none;
+        clear: both;
+        text-align: left;
+        width: initial
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialButtonRow div.trialReadMoreButton {
+        display: none
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialButtonRow a.getConnectedButton {
+        width: 100%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBar input {
+        padding-left: 20px;
+        width: 80%
+    }
+
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBar p:before {
+        display: none
+    }
+}
+
+@media screen and (max-width: 550px) {
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchDropdownContainer div#topSearchDropdownBtn a:after {
+        right:30px
+    }
+}
+
+@media screen and (max-width: 420px) {
+    div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBar input {
+        margin-left:20px
+    }
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsFilterBar div#topSearchBarContainer.hideMeAtFirst {
+    display: none
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialIdNum p.recruitingText {
+    color: #e56b54;
+    font-size: 12px;
+    margin-top: 5px
+}
+
+div#clinicalTrialsAngularApp div#clinicalTrialsList div.clinicalTrialsItem div.trialReadMoreButton.hidden {
+    display: none;
+}
